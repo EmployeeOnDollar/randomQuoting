@@ -14,8 +14,8 @@ if os.path.isfile('All_Quotes.csv'):
     elif inp == 'n':
         dt = pd.read_csv('All_Quotes.csv', sep=';', index_col=0)
     else:
-        print('Wrong input')
-        dt = []
+        print('Wrong input type.' + '\nChoose "y" or "n"')
+        dt = pd.DataFrame([0])
 else:
     print('File is created')
     dt = get_quote()
