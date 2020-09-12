@@ -1,7 +1,15 @@
 import pandas as pd
 import numpy as np
-from quoteWriting import get_quote
 import os.path
+
+
+# get input from user to create a new data frame
+def get_quote():
+    quote = input('Enter a Quote: ')
+    owner = input('From: ')
+    newdt = pd.DataFrame({'Quote': pd.Series(quote), 'Owner': pd.Series(owner)})
+    return newdt
+
 
 if os.path.isfile('All_Quotes.csv'):
     inp = input('Do you want to add new quote (y/n): ')
@@ -21,6 +29,15 @@ else:
     dt = get_quote()
     dt.to_csv('All_Quotes.csv', sep=';')
 
-idx = np.random.randint(0, len(dt))
-r = dt.iloc[idx]
-print(r)
+
+# selects a quote from 'data' data frame
+def select_quote(data):
+    idx = np.random.randint(0, len(data))
+    sel_quote = data.iloc[idx]
+    return sel_quote
+
+
+chosen = select_quote(dt)
+chosen_quote = chosen[0]
+chosen_owner = chosen[1]
+chosen.to_csv('Chosen_Quote.txt', sep='\n', header=False, index=False)
