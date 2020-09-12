@@ -11,15 +11,24 @@ def get_quote():
     return newdt
 
 
+# asks question to user
+def want2add(question):
+    ans = input(question).lower()
+    if ans == 'y' or ans == 'n':
+        return ans
+    else:
+        return want2add(question)
+
+
 if os.path.isfile('All_Quotes.csv'):
-    inp = input('Do you want to add new quote (y/n): ')
-    if inp == 'y':
-        print('File Exists')
+    answer = want2add('Do you want to add new quote (y/n): ')
+    if answer == 'y':
+        print('File Exists. This entry will be added to file.')
         dt = pd.read_csv('All_Quotes.csv', sep=';', index_col=0)
         new_dt = get_quote()
         dt = dt.append(new_dt)
         dt.to_csv('All_Quotes.csv', sep=';')
-    elif inp == 'n':
+    elif answer == 'n':
         dt = pd.read_csv('All_Quotes.csv', sep=';', index_col=0)
     else:
         print('Wrong input type.' + '\nChoose "y" or "n"')
