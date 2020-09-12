@@ -34,7 +34,7 @@ if os.path.isfile('All_Quotes.csv'):
         print('Wrong input type.' + '\nChoose "y" or "n"')
         dt = pd.DataFrame([0])
 else:
-    print('File is created')
+    print("File doesn't exist. It'll be created.")
     dt = get_quote()
     dt.to_csv('All_Quotes.csv', sep=';')
 
@@ -49,4 +49,5 @@ def select_quote(data):
 chosen = select_quote(dt)
 chosen_quote = chosen[0]
 chosen_owner = chosen[1]
+
 chosen.to_csv('Chosen_Quote.txt', sep='\n', header=False, index=False)
