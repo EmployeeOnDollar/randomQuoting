@@ -17,9 +17,11 @@ def want2add(question):
     if ans == 'y' or ans == 'n':
         return ans
     else:
+        print('Wrong input type.' + '\nChoose "y" or "n"')
         return want2add(question)
 
 
+# infinite while loop until break
 while True:
     if os.path.isfile('All_Quotes.csv'):
         answer = want2add('Do you want to add new quote (y/n): ')
